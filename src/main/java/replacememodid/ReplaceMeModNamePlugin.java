@@ -1,8 +1,6 @@
 package replacememodid;
 
 import java.util.Map;
-import fermiumbooter.FermiumRegistryAPI;
-import net.minecraftforge.fml.common.Loader;
 import org.spongepowered.asm.launch.MixinBootstrap;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 
@@ -12,8 +10,9 @@ public class ReplaceMeModNamePlugin implements IFMLLoadingPlugin {
 	public ReplaceMeModNamePlugin() {
 		MixinBootstrap.init();
 		//False for Vanilla/Coremod mixins, true for regular mod mixins
-		FermiumRegistryAPI.enqueueMixin(false, "mixins.replacememodid.vanilla.json");
-		FermiumRegistryAPI.enqueueMixin(true, "mixins.replacememodid.jei.json", () -> Loader.isModLoaded("jei"));
+		//FermiumRegistryAPI.enqueueMixin(false, "mixins.replacememodid.vanilla.json");
+		//FermiumRegistryAPI.enqueueMixin(true, "mixins.replacememodid.jei.json", () -> Loader.isModLoaded("jei"));
+		//--> Replaced by @MixinConfig.MixinToggle in ForgeConfigHandler. This way is still an option for more complicated conditions
 	}
 
 	@Override
