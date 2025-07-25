@@ -9,7 +9,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import replacememodid.ReplaceMeModName;
 
 @Config(modid = ReplaceMeModName.MODID)
-
 public class ForgeConfigHandler {
 	
 	@Config.Comment("Server-Side Options")
