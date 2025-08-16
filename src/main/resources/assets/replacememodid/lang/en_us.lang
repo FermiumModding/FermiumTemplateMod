@@ -1,0 +1,10 @@
+effects.replacememodid.example=Example
+potion.effect.example=Potion of Example
+splash_potion.effect.example=Splash Potion of Example
+lingering_potion.effect.example=Lingering Potion of Example
+tipped_arrow.effect.example=Tipped Arrow Potion of Example
+
+item.example_helmet.name=Example Helmet
+item.example_chestplate.name=Example Chestplate
+item.example_leggings.name=Example Leggings
+item.example_boots.name=Example Boots
