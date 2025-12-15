@@ -1,5 +1,6 @@
 package replacememodid;
 
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -8,6 +9,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import replacememodid.capability.CapabilityExampleHandler;
+import replacememodid.handlers.AccessTransformerExampleHandler;
 import replacememodid.handlers.ModRegistry;
 import replacememodid.proxy.CommonProxy;
 
@@ -16,7 +18,7 @@ public class ReplaceMeModName {
     public static final String MODID = "replacememodid";
     public static final String VERSION = "ReplaceMe.Mod.Version";
     public static final String NAME = "ReplaceMeModName";
-    public static final Logger LOGGER = LogManager.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger(NAME);
     public static boolean completedLoading = false;
 	
     @SidedProxy(clientSide = "replacememodid.proxy.ClientProxy", serverSide = "replacememodid.proxy.CommonProxy")
@@ -31,6 +33,8 @@ public class ReplaceMeModName {
         ReplaceMeModName.PROXY.preInit();
 
         CapabilityExampleHandler.registerCapability();
+
+        MinecraftForge.EVENT_BUS.register(AccessTransformerExampleHandler.class);
     }
 
     @Mod.EventHandler
