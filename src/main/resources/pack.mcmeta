@@ -1,6 +1,8 @@
 {
   "pack": {
-    "description": "ReplaceMeModName Assets",
-    "pack_format": 3
+    "description": {
+      "text": "${mod_id} resources"
+    },
+    "pack_format": 15
   }
 }

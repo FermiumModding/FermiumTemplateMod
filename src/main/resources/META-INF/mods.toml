@@ -1,0 +1,35 @@
+modLoader="javafml"
+loaderVersion="${loader_version_range}"
+license="${mod_license}"
+issueTrackerURL="https://github.com/ExampleModAuthor/ExampleMod/issues" #optional
+
+[[mods]] #mandatory
+modId="${mod_id}" #mandatory
+version="${mod_version}" #mandatory
+displayName="${mod_name}" #mandatory
+#optional from here
+logoFile="logo.png"
+authors="${mod_authors}"
+credits="${mod_credits}"
+displayURL="https://github.com/ExampleAuthor/"
+#updateJSONURL="https://change.me.example/updates.json"
+displayTest="${mod_side}" #default BOTH=MATCH_VERSION
+
+description='''${mod_description}'''
+
+[[dependencies.${mod_id}]] #optional
+    modId="forge"
+    versionRange="${forge_version_range}"
+    mandatory=true  # false if optional dependency
+    ordering="NONE" # BEFORE, AFTER, NONE - optional if dependency is mandatory, required if not
+    side="BOTH"     # CLIENT, SERVER, BOTH
+[[dependencies.${mod_id}]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+# adds GL version 3.2 or higher requirement if client
+#[features.${mod_id}]
+#openGLVersion="[3.2,)"
