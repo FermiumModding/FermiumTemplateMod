@@ -41,6 +41,11 @@ public class ForgeConfigHandler {
 				warnIngame = false //use this if the mixin is for an optional mod dependency that can be skipped with no issue if the mod is not present
 		)
 		public boolean enableJeiMixin = false;
+
+		@Config.Comment("Enables the tutorial mixin.")
+		@Config.Name("Enable Example Mixins")
+		@MixinConfig.MixinToggle(lateMixin = "mixins.replacememodid.examples.json", defaultValue = true)
+		public boolean enableExampleMixin = true;
 	}
 
 	public static class ClientConfig {

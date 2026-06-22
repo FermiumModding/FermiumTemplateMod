@@ -1,0 +1,10 @@
+{
+  "required": true,
+  "package": "replacememodid.mixin",
+  "refmap": "mixins.replacememodid.refmap.json",
+  "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.8",
+  "mixins": [
+    "replacememod.ExampleMixinTargetMixin"
+  ]
+}

@@ -9,8 +9,11 @@ public class ReplaceMeModNamePlugin implements IFMLLoadingPlugin {
 
 	public ReplaceMeModNamePlugin() {
 		MixinBootstrap.init();
+		//Replaced by @MixinConfig.MixinToggle:
+
 		//False for Vanilla/Coremod mixins, true for regular mod mixins
 		//FermiumRegistryAPI.enqueueMixin(false, "mixins.replacememodid.vanilla.json");
+
 		//FermiumRegistryAPI.enqueueMixin(true, "mixins.replacememodid.jei.json", () -> Loader.isModLoaded("jei"));
 		//--> Replaced by @MixinConfig.MixinToggle in ForgeConfigHandler. This way is still an option for more complicated conditions
 	}
