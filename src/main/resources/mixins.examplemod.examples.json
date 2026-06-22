@@ -1,11 +1,10 @@
 {
   "required": true,
   "package": "examplemod.mixin",
+  "refmap": "examplemod.mixins.refmap.json",
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
   "mixins": [
-    "vanilla.PlayerMixin"
-  ],
-  "client": [],
-  "server": []
+    "examplemod.ExampleMixinTargetMixin"
+  ]
 }
