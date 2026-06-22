@@ -1,9 +1,9 @@
 package examplemod.config;
 
-import fermiumbooter.api.MixinToggle;
+import fermiumbooter.api.CompatHandling;
 import fermiumbooter.api.FailureAction;
 import fermiumbooter.api.MixinConfig;
-import fermiumbooter.api.CompatHandling;
+import fermiumbooter.api.MixinToggle;
 
 import java.util.Arrays;
 import java.util.List;
