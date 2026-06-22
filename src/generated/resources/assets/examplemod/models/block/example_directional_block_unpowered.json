@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "examplemod:block/example_directional_block_front_unpowered",
+    "side": "examplemod:block/example_directional_block_side_unpowered"
+  }
+}

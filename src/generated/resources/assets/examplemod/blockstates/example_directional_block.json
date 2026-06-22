@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "axis=x,powered=false": {
+      "model": "examplemod:block/example_directional_block_unpowered",
+      "x": 90,
+      "y": 90
+    },
+    "axis=x,powered=true": {
+      "model": "examplemod:block/example_directional_block_powered",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,powered=false": {
+      "model": "examplemod:block/example_directional_block_unpowered"
+    },
+    "axis=y,powered=true": {
+      "model": "examplemod:block/example_directional_block_powered"
+    },
+    "axis=z,powered=false": {
+      "model": "examplemod:block/example_directional_block_unpowered",
+      "x": 90
+    },
+    "axis=z,powered=true": {
+      "model": "examplemod:block/example_directional_block_powered",
+      "x": 90
+    }
+  }
+}

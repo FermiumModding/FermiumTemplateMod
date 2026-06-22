@@ -1,0 +1,21 @@
+{
+  "attribute.examplemod.example_attribute": "Example Attribute",
+  "block.examplemod.example_block": "Example Block",
+  "block.examplemod.example_directional_block": "Example Directional Block",
+  "effect.examplemod.example": "Example Effect",
+  "enchantment.examplemod.example": "Example Enchantment",
+  "entity.examplemod.example_entity": "Example Entity",
+  "item.examplemod.example_boots": "Example Boots",
+  "item.examplemod.example_chestplate": "Example Chestplate",
+  "item.examplemod.example_entity_spawn_egg": "Example Entity Spawn Egg",
+  "item.examplemod.example_helmet": "Example Helmet",
+  "item.examplemod.example_item": "Example Item",
+  "item.examplemod.example_leggings": "Example Leggings",
+  "item.minecraft.lingering_potion.effect.example": "Lingering Potion of Example",
+  "item.minecraft.potion.effect.example": "Potion of Example",
+  "item.minecraft.splash_potion.effect.example": "Splash Potion of Example",
+  "item.minecraft.tipped_arrow.effect.example": "Arrow of Example",
+  "itemGroup.examplemod.example_tab": "Example Mod",
+  "message.examplemod.example": "This is an example message!",
+  "subtitles.examplemod.example_sound": "Example Sound"
+}
