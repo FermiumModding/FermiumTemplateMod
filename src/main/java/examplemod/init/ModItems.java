@@ -72,7 +72,7 @@ public class ModItems {
 
         @Override
         public String getName() {
-            return ExampleMod.MODID + ":example_material";
+            return ExampleMod.MODID + ":example";
         }
 
         @Override public float getToughness() {return 0.0F;}
