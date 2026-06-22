@@ -27,6 +27,7 @@ public class ModRegistry {
         ModEntities.ENTITY_TYPES.register(modEventBus);
         ModSounds.SOUND_EVENTS.register(modEventBus);
         ModAttributes.ATTRIBUTES.register(modEventBus);
+        ModLootModifiers.LOOT_MODIFIERS.register(modEventBus);
     }
 
     @SubscribeEvent
