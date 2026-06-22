@@ -29,4 +29,6 @@ out
 eclipse
 run
 
-
+/src/test/
+/run-data/
+/src/generated/resources/.cache/
