@@ -14,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 /**
  * Mixin examples demonstrating most injectors.
  * Targets this mods own ExampleMixinTarget class to avoid breaking anything.
+ * Note: Includes MixinExtras examples, which isn't available in all modded environments (but ships with this mods dependency FermiumBooter)
  *
  * If you're using Mixins, get the <a href="https://mcdev.io/">mcdev plugin for intellij</a> i beg you
  * Check the results of your mixins in /run/.mixin.out/class
@@ -32,13 +33,18 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  * - @Expression for almost arbitrary injection points
  * - OuterClass this0 for targeting the object of the enclosing class
  * - @Cancelable injects a CallbackInfo to return anywhere
+ *
+ * Reference the official wikis and javadocs of Mixin and MixinExtras, as well as the Fabric Mixin wiki
+ * - Fabric Mixin Wiki: https://wiki.fabricmc.net/tutorial:mixin_introduction
+ * - Mixin JavaDocs + GitHub Wiki: https://github.com/SpongePowered/Mixin/wiki
+ * - MixinExtras JavaDocs + GitHub Wiki: https://github.com/LlamaLad7/MixinExtras/wiki
  */
 
 @Mixin(value = ExampleMixinTarget.class, //private classes can be targeted using targets = "path.to.Class"
 // DON'T DO THIS:
 remap = false  // <-- this would apply to all other annotations inside this class if you set it here.
 )
-// Remap tutorial:
+// Remap tutorial (irrelevant since 26.1):
 // Mixins tries to automatically remap vanilla field+method names.
 // You will have to disable that for forge+modded targets, by putting remap=false.
 // BUT
@@ -47,7 +53,11 @@ remap = false  // <-- this would apply to all other annotations inside this clas
 // ----> Only add remap=false if the compiler complains! <----
 //   red error: put @SomeInjector(method=..., remap=false)
 //   yellow warn: put ..., at = @At(value=..., remap=false)
+//
+// remap=false applies on child annotations, so in @SomeInjector(remap=false, @At(...)) <- the inner bracket uses the remap=false from the outer bracket too
+// the same is true if you set remap=false in @Mixin, as i did here, which will fully disable remapping (unless overwritten)
 public abstract class ExampleMixinTargetMixin {
+//Mixin Classes don't need to be abstract, but its often useful and there's also no need to make them not abstract.
 
     /**
      * @Shadow - Provides access to private fields in the target class.
@@ -68,18 +78,18 @@ public abstract class ExampleMixinTargetMixin {
 
     // shadowing static methods requires a method body, which won't be injected
     @Shadow private static void staticMethodToShadow() {
-        throw new AssertionError("Failed to @Shadow ExampleMixinTarget.getSecretValue()");
+        throw new AssertionError("Failed to @Shadow ExampleMixinTarget.staticMethodToShadow()");
     }
 
     /**
      * @Inject - Execute your own code wherever you want.
      * Parameters are the original mods parameters
-     * and a CallBackInfo or CallBackInfoReturnable<ReturnType> to early return in the target method
+     * and a CallbackInfo or CallbackInfoReturnable<ReturnType> to early return in the target method
      */
     @Inject(
             method = "<init>",
-            at = @At("TAIL"), // Mixins is worried about you injecting anywhere else than the end of the constructor
-            cancellable = true
+            at = @At("TAIL"), // Mixins is worried about you injecting anywhere else than the end of the constructor (fixed with unsafe=true in Mixins 0.8.6+)
+            cancellable = true // If you want to early return using the Callback, you need to set this flag
     )
     private void examplemod_inject(int num, CallbackInfo ci){
         ci.cancel(); //this doesn't do anything as we were at the TAIL anyway but it would basically write return;
@@ -161,9 +171,9 @@ public abstract class ExampleMixinTargetMixin {
     }
 
     /**
-     * @WrapWithCondition - Only call if you want to
-     * Only works on methods returning void. If you return false, the method won't be called
-     * Simpler than @WrapOperation when you only need conditional execution.
+     * @WrapWithCondition - Only execute the targeted call if you want to
+     * Requires target methods returning void. If you return false, the call won't be executed
+     * Simpler than @WrapOperation, for when you only need conditional execution.
      */
     @WrapWithCondition(
             method = "targetExampleMethod",
@@ -218,10 +228,10 @@ public abstract class ExampleMixinTargetMixin {
      * The other thing you shouldn't do...
      *
      * @Redirect - Replaces a specific method call or field access with your own code
-     * <p>
+     *
      * WARNING: Invasive. Will crash if multiple mods redirect same call.
      * Only do this if you WANT to conflict with other mods targeting these methods or fields.
-     * <p>
+     *
      * For intermod compatibility you can always replace @Redirect with either @WrapOperation or @ModifyExpressionValue
      */
     @Redirect(
