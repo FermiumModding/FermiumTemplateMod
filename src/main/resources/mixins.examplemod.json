@@ -4,7 +4,9 @@
   "refmap": "examplemod.mixins.refmap.json",
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
-  "comment": "mixin classes added here will always be loaded",
+  "overwrites": {"requireAnnotations": true},
+  "injectors": {"defaultRequire": 1},
+  "comment": "mixin classes added here will always be loaded, as this json is registered in build.gradle.",
   "mixins": [],
   "client": [],
   "server": []

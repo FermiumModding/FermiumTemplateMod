@@ -4,6 +4,14 @@
   "refmap": "examplemod.mixins.refmap.json",
   "compatibilityLevel": "JAVA_17",
   "minVersion": "0.8",
+  "overwrites": {
+    "comment": "Without this, adding a method in your mixin class that has the same name as an existing method would act as an implicit @Overwrite. https://github.com/jaredlll08/MultiLoader-Template/issues/117",
+    "requireAnnotations": true
+  },
+  "injectors": {
+    "comment": "This forces each injection to have to succeed at least once. Override at each injector using require=. Default is 0=silent fail if no hits. Here its 1=crash if a mixin fails. You can also use allow= to set a max of successes per injection.",
+    "defaultRequire": 1
+  },
   "mixins": [
     "examplemod.ExampleMixinTargetMixin"
   ]
