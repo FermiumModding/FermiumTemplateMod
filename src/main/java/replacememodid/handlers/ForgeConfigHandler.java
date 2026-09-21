@@ -13,11 +13,11 @@ public class ForgeConfigHandler {
 	
 	@Config.Comment("Server-Side Options")
 	@Config.Name("Server Options")
-	public static final ServerConfig server = new ServerConfig();
+	public static ServerConfig server = new ServerConfig();
 
 	@Config.Comment("Client-Side Options")
 	@Config.Name("Client Options")
-	public static final ClientConfig client = new ClientConfig();
+	public static ClientConfig client = new ClientConfig();
 
 	@MixinConfig(name = ReplaceMeModName.MODID) //Needed on config classes that contain MixinToggles for those mixins to be added
 	public static class ServerConfig {
@@ -55,9 +55,8 @@ public class ForgeConfigHandler {
 		public boolean exampleClientOption = true;
 	}
 
-	@Mod.EventBusSubscriber(modid = ReplaceMeModName.MODID)
+	@Mod.EventBusSubscriber
 	private static class EventHandler{
-
 		@SubscribeEvent
 		public static void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
 			if(event.getModID().equals(ReplaceMeModName.MODID)) {
