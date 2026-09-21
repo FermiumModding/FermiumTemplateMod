@@ -8,11 +8,12 @@ import org.spongepowered.asm.launch.MixinBootstrap;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 import org.spongepowered.asm.mixin.MixinEnvironment;
 
+// This is a coremod (=loaded really early during startup, before minecraft itself)
+// you only need this if you want to do more complex things than what you do with @MixinToggle in configs
 @IFMLLoadingPlugin.MCVersion("1.12.2")
 public class ReplaceMeModNamePlugin implements IFMLLoadingPlugin {
 
 	public ReplaceMeModNamePlugin() {
-		MixinBootstrap.init();
 		//Replaced by @MixinConfig.MixinToggle:
 
 		//False for Vanilla/Coremod mixins, true for regular mod mixins

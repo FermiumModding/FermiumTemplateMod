@@ -19,7 +19,7 @@ minecraft {
         client {
             args "--username=InDev"
 
-            jvmArg "-Dfml.coreMods.load=${mixin_loader_class}"
+//            jvmArg "-Dfml.coreMods.load=${mixin_loader_class}" //only use if you need a coremod
 //            jvmArg "-Dmixin.hotSwap=true" //funnily enough this breaks normal hotswapping. to hotswap mixins you need a special JVM like DCEVM
             jvmArg "-Dmixin.checks.interfaces=true"
             jvmArg "-Dmixin.debug.export=true"
@@ -32,7 +32,7 @@ minecraft {
 
         server {
 
-            jvmArg "-Dfml.coreMods.load=${mixin_loader_class}"
+//            jvmArg "-Dfml.coreMods.load=${mixin_loader_class}" //only use if you need a coremod
 //            jvmArg "-Dmixin.hotSwap=true"
             jvmArg "-Dmixin.checks.interfaces=true"
             jvmArg "-Dmixin.debug.export=true"
@@ -103,14 +103,10 @@ jar {
         attr['Implementation-Vendor']       = mod_author
         attr['Implementation-Version']      = mod_version
         attr['Implementation-Timestamp']    = new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-        attr['FMLCorePlugin']               = mixin_loader_class
-        attr['FMLCorePluginContainsFMLMod'] = 'true'
-        attr['TweakClass']                  = 'org.spongepowered.asm.launch.MixinTweaker'
-        attr['ForceLoadAsMod'] = "true"
-
-        def currentTasks = gradle.startParameter.taskNames
-        if (currentTasks[0] == 'build' || currentTasks[0] == 'assemble')
-            attr['ForceLoadAsMod'] = "true"
+        //only use if you need a coremod:
+//        attr['FMLCorePlugin']               = mixin_loader_class
+//        attr['FMLCorePluginContainsFMLMod'] = 'true'
+//        attr['ForceLoadAsMod'] = gradle.startParameter.taskNames[0] != 'build' && gradle.startParameter.taskNames[0] != 'assemble'
         attributes(attr)
     }
 }
