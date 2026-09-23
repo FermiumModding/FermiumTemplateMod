@@ -19,7 +19,7 @@ minecraft {
         client {
             args "--username=InDev"
 
-//            jvmArg "-Dfml.coreMods.load=${mixin_loader_class}" //only use if you need a coremod
+//            jvmArg "-Dfml.coreMods.load=${coremod_class}" //only use if you need a coremod
 //            jvmArg "-Dmixin.hotSwap=true" //funnily enough this breaks normal hotswapping. to hotswap mixins you need a special JVM like DCEVM
             jvmArg "-Dmixin.checks.interfaces=true"
             jvmArg "-Dmixin.debug.export=true"
@@ -32,7 +32,7 @@ minecraft {
 
         server {
 
-//            jvmArg "-Dfml.coreMods.load=${mixin_loader_class}" //only use if you need a coremod
+//            jvmArg "-Dfml.coreMods.load=${coremod_class}" //only use if you need a coremod
 //            jvmArg "-Dmixin.hotSwap=true"
             jvmArg "-Dmixin.checks.interfaces=true"
             jvmArg "-Dmixin.debug.export=true"
@@ -95,19 +95,31 @@ processResources {
 
 jar {
     manifest {
-        def attr = [:]
-        attr['Specification-Title']         = mod_name
-        attr['Specification-Vendor']        = mod_author
-        attr['Specification-Version']       = '1'
-        attr['Implementation-Title']        = mod_name
-        attr['Implementation-Vendor']       = mod_author
-        attr['Implementation-Version']      = mod_version
-        attr['Implementation-Timestamp']    = new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-        //only use if you need a coremod:
-//        attr['FMLCorePlugin']               = mixin_loader_class
-//        attr['FMLCorePluginContainsFMLMod'] = 'true'
-//        attr['ForceLoadAsMod'] = gradle.startParameter.taskNames[0] != 'build' && gradle.startParameter.taskNames[0] != 'assemble'
-        attributes(attr)
+        attributes([
+            "Specification-Title"     : mod_name,
+            "Specification-Version"   : "1",
+            "Specification-Vendor"   : mod_author,
+            "Implementation-Title"    : mod_name,
+            "Implementation-Version"  : mod_version,
+            "Implementation-Vendor"   : mod_author,
+            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+
+        // --- only use if you need a coremod ---
+//            "FMLCorePlugin": coremod_class,
+//            "FMLCorePluginContainsFMLMod": "true", // this tells forge that you got both a normal @Mod AND a coremod
+
+        // ---
+        // These will construct the coremod a bit later (tweaker stage, after plugin stage)
+        // and will allow to use Mixins.addConfiguration during coremod init.
+        // Not needed for using FermiumRegistryAPI.enqueue, which achieves the same using late=false.
+        // So you most probably won't need this.
+        // ---
+        // Using this also forces you to use the build task before shipping,
+        // as using runClient or runServer creates a jar that only works indev (and vice versa)
+        // ---
+//            "TweakClass": "org.spongepowered.asm.launch.MixinTweaker",
+//            "ForceLoadAsMod": gradle.startParameter.taskNames[0] != 'runClient' && gradle.startParameter.taskNames[0] != 'runServer',
+        ])
     }
 }
 
