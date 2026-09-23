@@ -11,7 +11,7 @@ import replacememodid.capability.CapabilityExampleHandler;
 import replacememodid.handlers.ModRegistry;
 import replacememodid.proxy.CommonProxy;
 
-@Mod(modid = ReplaceMeModName.MODID, version = ReplaceMeModName.VERSION, name = ReplaceMeModName.NAME, dependencies = "required-after:fermiumbooter")
+@Mod(modid = ReplaceMeModName.MODID, version = ReplaceMeModName.VERSION, name = ReplaceMeModName.NAME, dependencies = "required-after:fermiumbooter@[1.5.2,);")
 public class ReplaceMeModName {
     public static final String MODID = "replacememodid";
     public static final String VERSION = "ReplaceMe.Mod.Version";
